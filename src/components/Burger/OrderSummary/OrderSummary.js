@@ -4,6 +4,7 @@ import Button from '../../UI/Button/Button';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 
 class OrderSummary extends Component {
+  // This could be a functional component, doesn't have to be a class
   componentWillUpdate() {
     console.log('[OrderSummary] WillUpdate');
   }
@@ -13,7 +14,7 @@ class OrderSummary extends Component {
       (igKey) => {
         return (
           <li key={igKey}>
-            <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:
+            <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
             {this.props.ingredients[igKey]}
           </li>
         );
