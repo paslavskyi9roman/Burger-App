@@ -6,7 +6,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Layout>{this.state.show ? <BurgerBuilder /> : null}</Layout>
+        <Layout>
+          <BurgerBuilder />
+        </Layout>
       </div>
     );
   }
