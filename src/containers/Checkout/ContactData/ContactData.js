@@ -21,17 +21,17 @@ class ContactData extends Component {
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
-      price: this.state.totalPrice,
+      price: this.props.price,
       customer: {
         name: 'Roman',
         address: {
-          street: 'Coolstreet 666',
+          street: 'Teststreet 1',
           zipCode: '72000',
           country: 'Ukraine',
         },
         email: 'test@test.com',
       },
-      deliveryMethid: 'fastest',
+      deliveryMethod: 'fastest',
     };
     axios
       .post('/orders.json', order)
@@ -57,7 +57,7 @@ class ContactData extends Component {
           className={classes.Input}
           type="email"
           name="email"
-          placeholder="Your email"
+          placeholder="Your Mail"
         />
         <input
           className={classes.Input}
@@ -69,7 +69,7 @@ class ContactData extends Component {
           className={classes.Input}
           type="text"
           name="postal"
-          placeholder="Postal Code "
+          placeholder="Postal Code"
         />
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER

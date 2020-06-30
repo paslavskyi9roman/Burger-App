@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -10,19 +11,13 @@ import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
-  cheese: 0.7,
-  meat: 1,
-  bacon: 0.8,
+  cheese: 0.4,
+  meat: 1.3,
+  bacon: 0.7,
 };
 
 class BurgerBuilder extends Component {
   state = {
-    // ingredients: {
-    //   salad: 0,
-    //   bacon: 0,
-    //   cheese: 0,
-    //   meat: 0,
-    // },
     ingredients: null,
     totalPrice: 4,
     purchasable: false,
@@ -32,10 +27,9 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     axios
-      .get(
-        'https://burger-on-react-fbd03.firebaseio.com/orders/-M9mm4ibcMr4nqjKtgBp/ingredients.json'
-      )
+      .get('https://burger-on-react-c7d28.firebaseio.com/ingredients')
       .then((response) => {
         this.setState({ ingredients: response.data });
       })
@@ -95,8 +89,6 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    // alert('You continue!');
-
     const queryParams = [];
     for (let i in this.state.ingredients) {
       queryParams.push(
@@ -107,7 +99,6 @@ class BurgerBuilder extends Component {
     }
     queryParams.push('price=' + this.state.totalPrice);
     const queryString = queryParams.join('&');
-
     this.props.history.push({
       pathname: '/checkout',
       search: '?' + queryString,
@@ -123,7 +114,7 @@ class BurgerBuilder extends Component {
     }
     let orderSummary = null;
     let burger = this.state.error ? (
-      <p>Ingredients can't be loaded</p>
+      <p>Ingredients can't be loaded!</p>
     ) : (
       <Spinner />
     );

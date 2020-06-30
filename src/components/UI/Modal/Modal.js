@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import classes from './Modal.css';
 import Auxiliary from '../../../hoc/Auxiliary/Auxiliary';
 import Backdrop from '../Backdrop/Backdrop';
@@ -10,6 +11,7 @@ class Modal extends Component {
       nextProps.children !== this.props.children
     );
   }
+
   componentWillUpdate() {
     console.log('[Modal] WillUpdate');
   }
