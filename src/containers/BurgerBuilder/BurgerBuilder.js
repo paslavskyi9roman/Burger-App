@@ -17,6 +17,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.props.onInitIngredients();
   }
 
@@ -57,7 +58,7 @@ class BurgerBuilder extends Component {
       <Spinner />
     );
 
-    if (this.state.ingredients) {
+    if (this.props.ings) {
       burger = (
         <Auxiliary>
           <Burger ingredients={this.props.ings} />
