@@ -45,7 +45,8 @@ export const auth = (email, password, isSignup) => {
       password: password,
       returnSecureToken: true,
     };
-    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQYkM3sdQpwEE8CbMWOJyfdZTPXOP7ryA';
+    let url =
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAQYkM3sdQpwEE8CbMWOJyfdZTPXOP7ryA';
     if (!isSignup) {
       url =
         'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQYkM3sdQpwEE8CbMWOJyfdZTPXOP7ryA';
