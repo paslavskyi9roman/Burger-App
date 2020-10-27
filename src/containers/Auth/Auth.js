@@ -15,12 +15,12 @@ class Auth extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'Mail Email',
+          placeholder: 'Mail Address',
         },
         value: '',
         validation: {
           required: true,
-          email: true,
+          isEmail: true,
         },
         valid: false,
         touched: false,
@@ -44,7 +44,7 @@ class Auth extends Component {
   };
 
   componentDidMount() {
-    if (this.props.builingBurger && this.props.authRedirectPath !== '/') {
+    if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
       this.props.onSetAuthRedirectPath();
     }
   }
@@ -112,6 +112,7 @@ class Auth extends Component {
         config: this.state.controls[key],
       });
     }
+
     let form = formElementsArray.map((formElement) => (
       <Input
         key={formElement.id}
@@ -125,14 +126,14 @@ class Auth extends Component {
       />
     ));
 
-    if (this.props.form) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
 
     let errorMessage = null;
 
     if (this.props.error) {
-      errorMessage = <p>{this.props.message}</p>;
+      errorMessage = <p>{this.props.error.message}</p>;
     }
 
     let authRedirect = null;
@@ -168,7 +169,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password)),
+    onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
     onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/')),
   };
 };

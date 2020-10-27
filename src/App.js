@@ -12,7 +12,7 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
   componentDidMount() {
-    this.props.onTryAutoSignUp();
+    this.props.onTryAutoSignup();
   }
 
   render() {
@@ -31,6 +31,7 @@ class App extends Component {
           <Route path='/orders' component={Orders} />
           <Route path='/logout' component={Logout} />
           <Route path='/' exact component={BurgerBuilder} />
+          <Redirect to='/' />
         </Switch>
       );
     }
@@ -51,8 +52,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTryAutoSignUp: () => dispatch(actions.authCheckState()),
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
   };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
